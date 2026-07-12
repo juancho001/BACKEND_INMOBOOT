@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  application:
+    name: inmobot-backend
+  config:
+    import: optional:file:.env[.properties]
+  docker:
+    compose:
+      enabled: false
+  datasource:
+    url: ${URL_DATA_BASE}
+    username: ${USER_DATA_BASE}
+    password: ${PASSWORD_DATA_BASE}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: ${JWT_SECRET_KEY}
+  expiration: ${JWT_TIME_EXPIRATION}
+  refresh-expiration: ${JWT_TIME_REFRESH_EXPIRATION}
+  max-inactivity: ${JWT_MAX_INACTIVITY}
+
+logging:
+  level:
+    root: INFO
+    com.inmobot: DEBUG
